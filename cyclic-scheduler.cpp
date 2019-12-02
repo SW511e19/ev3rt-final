@@ -27,6 +27,14 @@ int getCardPlacement() {
 }
 
 void pushPiston(){
+    ev3_motor_config(EV3_PORT_A, LARGE_MOTOR);
+    int32_t motorCount = ev3_motor_get_counts(EV3_PORT_A);
+    while(motorCount >= -360)
+    {
+        ev3_motor_set_power(EV3_PORT_A, (int)-20);
+        motorCount = ev3_motor_get_counts(EV3_PORT_A);
+	    ev3_motor_set_power(EV3_PORT_A, (int)0);
+    }
     cout << "Pushed the Piston" << endl;
 }
 
