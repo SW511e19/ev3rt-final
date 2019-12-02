@@ -24,29 +24,29 @@ class TestClass {
 public:
     TestClass()
     {
+        int32_t bIteration = -550;
+        int32_t fIteration = -110;
         while (1){
             label:
                 member = 1;
                 ev3_motor_config(EV3_PORT_B, LARGE_MOTOR);
                 int32_t backMotorCount = ev3_motor_get_counts(EV3_PORT_B);
-                int32_t bIteration = -550;
                 while (backMotorCount >= bIteration) {
                     ev3_motor_set_power(EV3_PORT_B, (int)-20);
                     backMotorCount = ev3_motor_get_counts(EV3_PORT_B);
                     ev3_motor_set_power(EV3_PORT_B, (int)0);
-                    bIteration = bIteration - 550;
                 }
+                bIteration = bIteration - 550;
             label2:
                 member = 2;
                 ev3_motor_config(EV3_PORT_C, LARGE_MOTOR);
                 int32_t frontMotorCount = ev3_motor_get_counts(EV3_PORT_C);
-                int32_t fIteration = -110;
                 while (frontMotorCount >= fIteration) {
                     ev3_motor_set_power(EV3_PORT_C, (int)-20);
                     frontMotorCount = ev3_motor_get_counts(EV3_PORT_C);
                     ev3_motor_set_power(EV3_PORT_C, (int)0);
-                    fIteration = fIteration - 110;
                 }
+                fIteration = fIteration - 110;
                 goto label2;
         }
     }
